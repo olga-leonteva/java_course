@@ -3,6 +3,7 @@ package ru.stqa.course.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
@@ -61,5 +62,18 @@ public class ContactHelper extends HelperBase {
 
   public void submitContactDeletion() {
     click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
+  }
+
+  public void createContact(ContactData contact, boolean creation) {
+    NavigationHelper navigationHelper = new NavigationHelper(wd);
+    navigationHelper.gotoNewContactPage();
+    fillContactForm(contact, true);
+    submitContactCreation();
+    returnToHomePage();
+
+  }
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.name("selected[]"));
   }
 }
