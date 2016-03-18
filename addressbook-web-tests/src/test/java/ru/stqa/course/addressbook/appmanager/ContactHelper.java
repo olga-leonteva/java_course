@@ -64,7 +64,7 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
   }
 
-  public void createContact(ContactData contact, boolean creation) {
+  public void createContact(ContactData contact) {
     NavigationHelper navigationHelper = new NavigationHelper(wd);
     navigationHelper.gotoNewContactPage();
     fillContactForm(contact, true);
