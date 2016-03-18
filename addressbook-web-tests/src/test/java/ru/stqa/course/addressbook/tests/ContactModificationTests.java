@@ -18,10 +18,10 @@ public class ContactModificationTests extends TestBase{
       app.getGroupHelper().createGroup(new GroupData("test1", null, null));
     }
     app.getNavigationHelper().gotoHomePage();
-    int before = app.getContactHelper().getContactCount();
     if (! app.getContactHelper().isThereAContact()) {
       app.getContactHelper().createContact(new ContactData("Olga", "Leonteva", "testAddress", "123456", "olga.leonteva@test.ru", "test1", "test2", "test3", "test1"));
     }
+    int before = app.getContactHelper().getContactCount();
     app.getContactHelper().initContactModification(before - 1);
     app.getContactHelper().fillContactForm(new ContactData("Olga", "Leonteva", "testAddress", "123456", "olga.leonteva@test.ru", "test1", "test2", "test3", null), false);
     app.getContactHelper().submitContactModification();
