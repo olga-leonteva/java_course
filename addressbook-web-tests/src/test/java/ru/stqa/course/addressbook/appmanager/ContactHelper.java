@@ -3,11 +3,15 @@ package ru.stqa.course.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.course.addressbook.model.ContactData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by leonto on 3/4/2016.
@@ -80,4 +84,12 @@ public class ContactHelper extends HelperBase {
   public int getContactCount() {
     return wd.findElements(By.name("selected[]")).size();
   }
+
+//  public List<ContactData> getContactList() {
+//    List<ContactData> contact = new ArrayList<ContactData>();
+//    List<WebElement> elements = wd.findElements(By.cssSelector("tr.entry"));
+//    for (WebElement element : elements) {
+//
+//    }
+//  }
 }
