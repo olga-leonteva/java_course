@@ -1,6 +1,7 @@
 package ru.stqa.course.addressbook.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.course.addressbook.model.ContactData;
 import ru.stqa.course.addressbook.model.GroupData;
@@ -12,6 +13,18 @@ import java.util.List;
  * Created by leonto on 3/7/2016.
  */
 public class ContactDeletionTests extends TestBase{
+
+  @BeforeMethod
+  public void ensurePreconditions() {
+    app.getNavigationHelper().gotoGroupPage();
+    if (! app.getGroupHelper().isThereAGroup()){
+      app.getGroupHelper().createGroup(new GroupData("test1", null, null));
+    }
+    app.getNavigationHelper().gotoHomePage();
+    if (! app.getContactHelper().isThereAContact()) {
+      app.getContactHelper().createContact(new ContactData("Name1", "LastName1", "testAddress", "123456", "olga.leonteva@test.ru", "test1", "test2", "test3", "test1"));
+    }
+  }
 
   @Test(enabled = false)
   public void testContactDeletion() {
