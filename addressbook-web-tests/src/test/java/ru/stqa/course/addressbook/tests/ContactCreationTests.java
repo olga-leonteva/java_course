@@ -12,19 +12,19 @@ import java.util.List;
 public class ContactCreationTests extends TestBase {
 
 
-    @Test(enabled = false)
+    @Test
     public void testContactCreation() {
 
         app.goTo().groupPage();
-        if (! app.group().isThereAGroup()){
+        if (app.group().list().size() == 0) {
             app.group().create(new GroupData("test1", null, null));
         }
-        app.goTo().gotoHomePage();
-        List<ContactData> before = app.getContactHelper().getContactList();
-        app.goTo().gotoNewContactPage();
+        app.goTo().homePage();
+        List<ContactData> before = app.contact().list();
+        app.goTo().contactPage();
         ContactData contact = new ContactData("Name1", "LastName1", "testAddress", "123456", "olga.leonteva@test.ru", "test1", "test2", "test3", "test1");
-        app.getContactHelper().createContact(contact);
-        List<ContactData> after = app.getContactHelper().getContactList();
+        app.contact().create(contact);
+        List<ContactData> after = app.contact().list();
         Assert.assertEquals(after.size(), before.size() + 1);
 
         before.add(contact);

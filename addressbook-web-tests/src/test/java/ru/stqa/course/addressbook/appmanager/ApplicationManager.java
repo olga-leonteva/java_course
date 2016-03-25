@@ -58,11 +58,8 @@ public class ApplicationManager  {
     return navigationHelper;
   }
 
-  public ContactHelper getContactHelper() {
+  public ContactHelper contact() {
     return contactHelper;
   }
 
-  public void closePopupDeletion(){
-    wd.switchTo().alert().accept();
-  }
 }

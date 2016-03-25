@@ -17,25 +17,24 @@ public class ContactModificationTests extends TestBase{
   @BeforeMethod
   public void ensurePreconditions() {
     app.goTo().groupPage();
-    if (! app.group().isThereAGroup()){
+    if (app.group().list().size() == 0) {
       app.group().create(new GroupData("test1", null, null));
     }
-    app.goTo().gotoHomePage();
-    if (! app.getContactHelper().isThereAContact()) {
-      app.getContactHelper().createContact(new ContactData("Name1", "LastName1", "testAddress", "123456", "olga.leonteva@test.ru", "test1", "test2", "test3", "test1"));
+    app.goTo().homePage();
+    if (app.contact().list().size() == 0) {
+      app.contact().create(new ContactData("Name1", "LastName1", "testAddress", "123456", "olga.leonteva@test.ru", "test1", "test2", "test3", "test1"));
     }
   }
 
-  @Test(enabled = false)
+  @Test
 
   public void testContactModification() {
-    List<ContactData> before = app.getContactHelper().getContactList();
-    app.getContactHelper().initContactModification(before.size() + 1);
+    List<ContactData> before = app.contact().list();
+  //  app.contact().initContactModification(before.size() + 1);
     ContactData contact = new ContactData("Name1", "LastName1", "testAddress", "123456", "olga.leonteva@test.ru", "test1", "test2", "test3", null);
-    app.getContactHelper().fillContactForm(contact, false);
-    app.getContactHelper().submitContactModification();
-    app.getContactHelper().returnToHomePage();
-    List<ContactData> after = app.getContactHelper().getContactList();
+    app.contact().modify(before.size() + 1, contact);
+    app.contact().returnToHomePage();
+    List<ContactData> after = app.contact().list();
     Assert.assertEquals(after.size(), before.size());
 
     before.remove(before.size() - 1);
@@ -46,4 +45,6 @@ public class ContactModificationTests extends TestBase{
     Assert.assertEquals(before, after);
 
   }
+
+
 }
