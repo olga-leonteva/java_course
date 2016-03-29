@@ -18,11 +18,15 @@ public class ContactModificationTests extends TestBase{
   public void ensurePreconditions() {
     app.goTo().groupPage();
     if (app.group().list().size() == 0) {
-      app.group().create(new GroupData("test1", null, null));
+      app.group().create(new GroupData().withName("test1"));
     }
     app.goTo().homePage();
     if (app.contact().list().size() == 0) {
-      app.contact().create(new ContactData("Name1", "LastName1", "testAddress", "123456", "olga.leonteva@test.ru", "test1", "test2", "test3", "test1"));
+      app.goTo().contactPage();
+      app.contact().create(new ContactData()
+              .withFirstName("Name1").withLastName("LastName1").withAddress("testAddress")
+              .withPhone("123456").withEmail("olga.leonteva@test.ru").withSecondaryAddress("test1")
+              .withHome("test2").withNotes("test3").withGroup("test1"));
     }
   }
 
@@ -30,8 +34,10 @@ public class ContactModificationTests extends TestBase{
 
   public void testContactModification() {
     List<ContactData> before = app.contact().list();
-  //  app.contact().initContactModification(before.size() + 1);
-    ContactData contact = new ContactData("Name1", "LastName1", "testAddress", "123456", "olga.leonteva@test.ru", "test1", "test2", "test3", null);
+    ContactData contact = new ContactData()
+            .withId(before.get(before.size() - 1).getId()).withFirstName("Name2").withLastName("LastName1").withAddress("testAddress")
+            .withPhone("123456").withEmail("olga.leonteva@test.ru").withSecondaryAddress("test1")
+            .withHome("test2").withNotes("test3");
     app.contact().modify(before.size() + 1, contact);
     app.contact().returnToHomePage();
     List<ContactData> after = app.contact().list();

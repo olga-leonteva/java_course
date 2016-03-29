@@ -18,11 +18,14 @@ public class ContactDeletionTests extends TestBase{
   public void ensurePreconditions() {
     app.goTo().groupPage();
     if (app.group().list().size() == 0) {
-      app.group().create(new GroupData("test1", null, null));
+      app.group().create(new GroupData().withName("test1"));
     }
     app.goTo().homePage();
     if (app.contact().list().size() == 0) {
-      app.contact().create(new ContactData("Name1", "LastName1", "testAddress", "123456", "olga.leonteva@test.ru", "test1", "test2", "test3", "test1"));
+      app.contact().create(new ContactData()
+              .withFirstName("Name1").withFirstName("LastName1").withAddress("testAddress")
+              .withPhone("123456").withEmail("olga.leonteva@test.ru").withSecondaryAddress("test1")
+              .withHome("test2").withNotes("test3").withGroup("test1"));
     }
   }
 

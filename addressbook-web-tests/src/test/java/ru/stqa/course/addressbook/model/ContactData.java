@@ -1,42 +1,16 @@
 package ru.stqa.course.addressbook.model;
 
 public class ContactData {
-  private int id;
-  private final String firstName;
-  private final String lastName;
-  private final String address;
-  private final String phone;
-  private final String email;
-  private final String secondaryAddress;
-  private final String home;
-  private final String notes;
+  private int id = Integer.MAX_VALUE;
+  private String firstName;
+  private String lastName;
+  private String address;
+  private String phone;
+  private String email;
+  private String secondaryAddress;
+  private String home;
+  private String notes;
   private String group;
-
-
-  public ContactData(int id, String firstName, String lastName, String address, String phone, String email, String secondaryAddress, String home, String notes, String group) {
-    this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.address = address;
-    this.phone = phone;
-    this.email = email;
-    this.secondaryAddress = secondaryAddress;
-    this.home = home;
-    this.notes = notes;
-    this.group = group;
-  }
-  public ContactData(String firstName, String lastName, String address, String phone, String email, String secondaryAddress, String home, String notes, String group) {
-    this.id = Integer.MAX_VALUE;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.address = address;
-    this.phone = phone;
-    this.email = email;
-    this.secondaryAddress = secondaryAddress;
-    this.home = home;
-    this.notes = notes;
-    this.group = group;
-  }
 
   public int getId() {
     return id;
@@ -77,6 +51,58 @@ public class ContactData {
   public String getGroup() {
     return group;
   }
+
+
+  public ContactData withId(int id) {
+    this.id = id;
+    return this;
+  }
+
+  public ContactData withFirstName(String firstName) {
+    this.firstName = firstName;
+    return this;
+  }
+
+  public ContactData withLastName(String lastName) {
+    this.lastName = lastName;
+    return this;
+  }
+
+  public ContactData withAddress(String address) {
+    this.address = address;
+    return this;
+  }
+
+  public ContactData withPhone(String phone) {
+    this.phone = phone;
+    return this;
+  }
+
+  public ContactData withEmail(String email) {
+    this.email = email;
+    return this;
+  }
+
+  public ContactData withSecondaryAddress(String secondaryAddress) {
+    this.secondaryAddress = secondaryAddress;
+    return this;
+  }
+
+  public ContactData withHome(String home) {
+    this.home = home;
+    return this;
+  }
+
+  public ContactData withNotes(String notes) {
+    this.notes = notes;
+    return this;
+  }
+
+  public ContactData withGroup(String group) {
+    this.group = group;
+    return this;
+  }
+
 
   @Override
   public String toString() {

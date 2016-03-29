@@ -17,12 +17,16 @@ public class ContactCreationTests extends TestBase {
 
         app.goTo().groupPage();
         if (app.group().list().size() == 0) {
-            app.group().create(new GroupData("test1", null, null));
+            app.group().create(new GroupData().withName("test1"));
         }
         app.goTo().homePage();
         List<ContactData> before = app.contact().list();
         app.goTo().contactPage();
-        ContactData contact = new ContactData("Name1", "LastName1", "testAddress", "123456", "olga.leonteva@test.ru", "test1", "test2", "test3", "test1");
+        ContactData contact = new ContactData()
+            //    .withId(before.get(before.size() + 1).getId())
+                .withFirstName("Name1").withLastName("LastName1").withAddress("testAddress")
+                .withPhone("123456").withEmail("olga.leonteva@test.ru").withSecondaryAddress("test1")
+                .withHome("test2").withNotes("test3").withGroup("test1");
         app.contact().create(contact);
         List<ContactData> after = app.contact().list();
         Assert.assertEquals(after.size(), before.size() + 1);
