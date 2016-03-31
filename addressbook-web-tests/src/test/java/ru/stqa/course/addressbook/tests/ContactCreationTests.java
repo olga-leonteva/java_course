@@ -5,8 +5,6 @@ import org.testng.annotations.Test;
 import ru.stqa.course.addressbook.model.ContactData;
 import ru.stqa.course.addressbook.model.GroupData;
 
-import java.util.Comparator;
-import java.util.List;
 import java.util.Set;
 
 

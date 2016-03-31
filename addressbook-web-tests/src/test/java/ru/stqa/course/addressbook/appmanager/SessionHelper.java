@@ -2,7 +2,6 @@ package ru.stqa.course.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 /**
  * Created by leonto on 3/4/2016.
