@@ -21,6 +21,7 @@ public class GroupCreationTests extends TestBase {
     group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt());
     before.add(group);
     Assert.assertEquals(before, after);
+    MatcherA
   }
 
 }
