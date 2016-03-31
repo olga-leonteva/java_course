@@ -11,7 +11,9 @@ import org.testng.Assert;
 import ru.stqa.course.addressbook.model.ContactData;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by leonto on 3/4/2016.
@@ -56,12 +58,13 @@ public class ContactHelper extends HelperBase {
     wd.switchTo().alert().accept();
   }
 
-  public void selectContact(int index) {
-    wd.findElements(By.name("selected[]")).get(index).click();
+  public void selectContactById(int id) {
+    wd.findElement(By.cssSelector("input[id='" + id + "']")).click();
   }
 
-  public void initContactModification(int index) {
-    click(By.xpath("//table[@id='maintable']/tbody/tr[" + index + "]/td[8]/a/img"));
+  public void initContactModification(int id) {
+    wd.findElement(By.xpath(".//a[@href='edit.php?id=" + id + "']")).click();
+   // click(By.xpath("//table[@id='maintable']/tbody/tr[" + index + "]/td[8]/a/img"));
   }
 
   public void submitContactModification() {
@@ -80,16 +83,17 @@ public class ContactHelper extends HelperBase {
     returnToHomePage();
   }
 
-  public void modify(int index, ContactData contact) {
-    initContactModification(index);
+  public void modify(ContactData contact) {
+    initContactModification(contact.getId());
     fillContactForm(contact, false);
     submitContactModification();
   }
 
-  public void delete(int index) {
-    selectContact(index);
+  public void delete(ContactData contact) {
+    selectContactById(contact.getId());
     submitContactDeletion();
     closePopupDeletion();
+
   }
 
   public boolean isThereAContact() {
@@ -99,9 +103,9 @@ public class ContactHelper extends HelperBase {
   public int getContactCount() {
     return wd.findElements(By.name("selected[]")).size();
   }
-
-  public List<ContactData> list() {
-    List<ContactData> contacts = new ArrayList<ContactData>();
+  
+  public Set<ContactData> all() {
+    Set<ContactData> contacts = new HashSet<ContactData>();
     List<WebElement> elements = wd.findElements(By.tagName("tr"));
     for (int i = 1; i < elements.size(); i++) {
       String firstName = elements.get(i).findElements(By.tagName("td")).get(2).getText();
@@ -113,4 +117,6 @@ public class ContactHelper extends HelperBase {
     }
     return contacts;
   }
+
+
 }
