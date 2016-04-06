@@ -117,10 +117,10 @@ public class ContactHelper extends HelperBase {
     for (int i = 1; i < elements.size(); i++) {
       String firstName = elements.get(i).findElements(By.tagName("td")).get(2).getText();
       String lastName = elements.get(i).findElements(By.tagName("td")).get(1).getText();
-      String[] phones = elements.get(i).findElements(By.tagName("td")).get(5).getText().split("\n");
+      String allPhones = elements.get(i).findElements(By.tagName("td")).get(5).getText();
       int id = Integer.parseInt(elements.get(i).findElement(By.tagName("input")).getAttribute("id"));
       ContactData contact = new ContactData().withId(id).withFirstName(firstName).withLastName(lastName)
-              .withHomePhone(phones[0]).withMobilePhone(phones[1]).withWorkPhone(phones[2]);
+              .withAllPhones(allPhones);
       contactCache.add(contact);
     }
     return new Contacts(contactCache);
