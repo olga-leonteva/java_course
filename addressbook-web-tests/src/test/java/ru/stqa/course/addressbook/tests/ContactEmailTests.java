@@ -20,7 +20,7 @@ public class ContactEmailTests extends TestBase {
     public void ensurePreconditions() {
         app.goTo().groupPage();
         if (app.group().all().size() == 0) {
-            app.group().create(new GroupData().withName("test1"));
+            app.group().create(new GroupData().withName("test2"));
         }
         app.goTo().homePage();
         if (app.contact().all().size() == 0) {

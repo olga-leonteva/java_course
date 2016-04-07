@@ -1,7 +1,9 @@
 package ru.stqa.course.addressbook.tests;
 
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.course.addressbook.model.ContactData;
+import ru.stqa.course.addressbook.model.GroupData;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -10,6 +12,22 @@ import static org.hamcrest.MatcherAssert.assertThat;
  * Created by leonto on 4/7/2016.
  */
 public class ContactAddressTests extends TestBase {
+
+    @BeforeMethod
+    public void ensurePreconditions() {
+        app.goTo().groupPage();
+        if (app.group().all().size() == 0) {
+            app.group().create(new GroupData().withName("test2"));
+        }
+        app.goTo().homePage();
+        if (app.contact().all().size() == 0) {
+            app.goTo().contactPage();
+            app.contact().create(new ContactData()
+                    .withFirstName("Name1").withLastName("LastName1")
+                    .withAddress("Spb city").withGroup("test2"));
+        }
+    }
+
 
     @Test
     public void testContactAddress() {

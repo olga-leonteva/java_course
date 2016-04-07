@@ -17,7 +17,7 @@ public class ContactCreationTests extends TestBase {
 
         app.goTo().groupPage();
         if (app.group().all().size() == 0) {
-            app.group().create(new GroupData().withName("test1"));
+            app.group().create(new GroupData().withName("test2"));
         }
         app.goTo().homePage();
         Contacts before = app.contact().all();
