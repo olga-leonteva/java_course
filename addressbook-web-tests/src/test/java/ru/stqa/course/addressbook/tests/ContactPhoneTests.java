@@ -26,9 +26,9 @@ public class ContactPhoneTests extends TestBase {
         if (app.contact().all().size() == 0) {
             app.goTo().contactPage();
             app.contact().create(new ContactData()
-                    .withFirstName("Name1").withLastName("LastName1").withAddress("testAddress")
-                    .withHomePhone("111").withMobilePhone("222").withWorkPhone("333").withEmail("olga.leonteva@test.ru")
-                    .withSecondaryAddress("test1").withNotes("test3").withGroup("test1"));
+                    .withFirstName("Name1").withLastName("LastName1")
+                    .withHomePhone("111").withMobilePhone("222").withWorkPhone("333")
+            .withGroup("test2"));
         }
     }
 

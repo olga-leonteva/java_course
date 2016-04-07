@@ -33,8 +33,8 @@ public class ContactHelper extends HelperBase {
     type(By.name("mobile"), contactData.getMobilePhone());
     type(By.name("work"), contactData.getWorkPhone());
     type(By.name("email"), contactData.getEmail());
-    type(By.name("email2"), contactData.getEmail());
-    type(By.name("email3"), contactData.getEmail());
+    type(By.name("email2"), contactData.getEmail2());
+    type(By.name("email3"), contactData.getEmail3());
     type(By.name("address2"), contactData.getSecondaryAddress());
     type(By.name("phone2"), contactData.getHome());
     type(By.name("notes"), contactData.getNotes());
@@ -76,8 +76,6 @@ public class ContactHelper extends HelperBase {
   }
 
   public void create(ContactData contact) {
-//    NavigationHelper navigationHelper = new NavigationHelper(wd);
-//    navigationHelper.contactPage();
     fillContactForm(contact, true);
     submitContactCreation();
     contactCache = null;
@@ -141,7 +139,7 @@ public class ContactHelper extends HelperBase {
     String email = wd.findElement(By.name("email")).getAttribute("value");
     String email2 = wd.findElement(By.name("email2")).getAttribute("value");
     String email3 = wd.findElement(By.name("email3")).getAttribute("value");
-    String address = wd.findElement(By.name("address")).getAttribute("value");
+    String address = wd.findElement(By.name("address")).getText();
     wd.navigate().back();
     return new ContactData().withId(contact.getId()).withFirstName(firstname).withLastName(lastname)
             .withHomePhone(homePhone).withMobilePhone(mobilePhone).withWorkPhone(workPhone)
