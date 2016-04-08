@@ -17,6 +17,11 @@ public class ContactData {
   private String home;
   private String notes;
   private String group;
+  private String fullName;
+
+  public String getFullName() {
+    return fullName;
+  }
 
   public String getAllEmails() {
     return allEmails;
@@ -87,6 +92,10 @@ public class ContactData {
     return group;
   }
 
+  public ContactData withFullName(String fullName) {
+    this.fullName = fullName;
+    return this;
+  }
 
   public ContactData withAllPhones(String allPhones) {
     this.allPhones = allPhones;

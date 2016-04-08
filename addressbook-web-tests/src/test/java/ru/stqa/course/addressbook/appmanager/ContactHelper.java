@@ -66,6 +66,9 @@ public class ContactHelper extends HelperBase {
     wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
    // click(By.xpath("//table[@id='maintable']/tbody/tr[" + index + "]/td[8]/a/img"));
   }
+  private void initContactDetails(int id) {
+    wd.findElement(By.cssSelector(String.format("a[href='view.php?id=%s']", id))).click();
+  }
 
   public void submitContactModification() {
     click(By.xpath("//div[@id='content']/form[1]/input[22]"));
@@ -144,5 +147,31 @@ public class ContactHelper extends HelperBase {
     return new ContactData().withId(contact.getId()).withFirstName(firstname).withLastName(lastname)
             .withHomePhone(homePhone).withMobilePhone(mobilePhone).withWorkPhone(workPhone)
             .withEmail(email).withEmail2(email2).withEmail3(email3).withAddress(address);
+//    return new ContactData().withId(contact.getId()).withFirstName(firstname).withLastName(lastname);
   }
+
+  public ContactData infoFromDetailsForm(ContactData contact) {
+    initContactDetails(contact.getId());
+    String [] info = wd.findElement(By.id("content")).getText().split("\n");
+    String fistname = info[0].split(" ")[0];
+    String lastname = info[0].split(" ")[1];
+    String address = info[1];
+    String homePhone = info[3].replaceAll("H:","").replaceAll("\\s", "").replaceAll("[-()]","");
+    String mobilePhone = info[4].replaceAll("M:","").replaceAll("\\s", "").replaceAll("[-()]","");
+    String workPhone = info[5].replaceAll("W:","").replaceAll("\\s", "").replaceAll("[-()]","");
+    String email = info[7].split(" ")[0];
+    String email2 = info[8].split(" ")[0];
+    String email3 = info[9].split(" ")[0];
+    //String homePhone = info.replace(" H:", "").split(" ")[3].replaceAll("\\s", "").replaceAll("[-()]","");
+//    String homePhone = elements.get(3).getText();
+//    homePhone = homePhone.split(" ")[1];
+//    String workPhone = elements.get(4).getText();
+//    workPhone = workPhone.replaceAll(" ", "").split(":")[1];
+    wd.navigate().back();
+    return new ContactData().withId(contact.getId()).withFirstName(fistname).withLastName(lastname)
+            .withAddress(address).withHomePhone(homePhone).withMobilePhone(mobilePhone).withWorkPhone(workPhone)
+            .withEmail(email).withEmail2(email2).withEmail3(email3);
+  }
+// .withHomePhone(homePhone).withWorkPhone(workPhone)
+
 }
