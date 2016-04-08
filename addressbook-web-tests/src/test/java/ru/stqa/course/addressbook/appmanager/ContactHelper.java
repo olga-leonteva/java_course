@@ -162,11 +162,6 @@ public class ContactHelper extends HelperBase {
     String email = info[7].split(" ")[0];
     String email2 = info[8].split(" ")[0];
     String email3 = info[9].split(" ")[0];
-    //String homePhone = info.replace(" H:", "").split(" ")[3].replaceAll("\\s", "").replaceAll("[-()]","");
-//    String homePhone = elements.get(3).getText();
-//    homePhone = homePhone.split(" ")[1];
-//    String workPhone = elements.get(4).getText();
-//    workPhone = workPhone.replaceAll(" ", "").split(":")[1];
     wd.navigate().back();
     return new ContactData().withId(contact.getId()).withFirstName(fistname).withLastName(lastname)
             .withAddress(address).withHomePhone(homePhone).withMobilePhone(mobilePhone).withWorkPhone(workPhone)
