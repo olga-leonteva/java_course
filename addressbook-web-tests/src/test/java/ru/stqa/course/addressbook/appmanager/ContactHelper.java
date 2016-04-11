@@ -38,9 +38,12 @@ public class ContactHelper extends HelperBase {
     type(By.name("address2"), contactData.getSecondaryAddress());
     type(By.name("phone2"), contactData.getHome());
     type(By.name("notes"), contactData.getNotes());
+//    type(By.name("photo"), contactData.getPhoto().getAbsolutePath());
 
     if (creation) {
-      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+      if (contactData.getGroup() != null) {
+        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+      }
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }

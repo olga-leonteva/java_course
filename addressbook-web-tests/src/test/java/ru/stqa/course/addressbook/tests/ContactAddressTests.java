@@ -15,16 +15,12 @@ public class ContactAddressTests extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions() {
-        app.goTo().groupPage();
-        if (app.group().all().size() == 0) {
-            app.group().create(new GroupData().withName("test2"));
-        }
         app.goTo().homePage();
         if (app.contact().all().size() == 0) {
             app.goTo().contactPage();
             app.contact().create(new ContactData()
                     .withFirstName("Name1").withLastName("LastName1")
-                    .withAddress("Spb city").withGroup("test2"));
+                    .withAddress("Spb city"));
         }
     }
 

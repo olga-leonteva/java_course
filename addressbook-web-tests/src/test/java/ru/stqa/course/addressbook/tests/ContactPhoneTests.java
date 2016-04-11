@@ -18,17 +18,12 @@ public class ContactPhoneTests extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions() {
-        app.goTo().groupPage();
-        if (app.group().all().size() == 0) {
-            app.group().create(new GroupData().withName("test2"));
-        }
         app.goTo().homePage();
         if (app.contact().all().size() == 0) {
             app.goTo().contactPage();
             app.contact().create(new ContactData()
                     .withFirstName("Name1").withLastName("LastName1")
-                    .withHomePhone("111").withMobilePhone("222").withWorkPhone("333")
-            .withGroup("test2"));
+                    .withHomePhone("111").withMobilePhone("222").withWorkPhone("333"));
         }
     }
 

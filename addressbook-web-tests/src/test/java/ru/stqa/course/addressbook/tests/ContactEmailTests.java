@@ -18,17 +18,12 @@ public class ContactEmailTests extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions() {
-        app.goTo().groupPage();
-        if (app.group().all().size() == 0) {
-            app.group().create(new GroupData().withName("test2"));
-        }
         app.goTo().homePage();
         if (app.contact().all().size() == 0) {
             app.goTo().contactPage();
             app.contact().create(new ContactData()
                     .withFirstName("Name1").withLastName("LastName1")
-                    .withEmail("name1.lastname1@ru").withEmail2("email2@test").withEmail3("email3@test")
-                    .withGroup("test2"));
+                    .withEmail("name1.lastname1@ru").withEmail2("email2@test").withEmail3("email3@test"));
         }
     }
 
