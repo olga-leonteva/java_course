@@ -23,6 +23,9 @@ public class GroupDataGenerator {
     @Parameter(names = "-f", description = "Target file")
     public String file;
 
+    @Parameter(names = "-d", description = "Data format")
+    public String formate;
+
     public static void main(String[] args) throws IOException {
         GroupDataGenerator generator = new GroupDataGenerator();
         JCommander jCommander = new JCommander(generator);
@@ -37,10 +40,19 @@ public class GroupDataGenerator {
 
     private void run() throws IOException {
         List<GroupData> groups = generateGroups(count);
-        save(groups, new File(file));
+        if (formate.equals("csv")) {
+            saveAsCsv(groups, new File(file));
+        } else if (formate.equals("xml")){
+            saveAsXml(groups, new File(file));
+        } else {
+            System.out.println("Unrecognized format " + formate);
+        }
     }
 
-    private void save(List<GroupData> groups, File file) throws IOException {
+    private void saveAsXml(List<GroupData> groups, File file) {
+    }
+
+    private void saveAsCsv(List<GroupData> groups, File file) throws IOException {
         System.out.println(new File(".").getAbsolutePath());
         Writer writer = new FileWriter(file);
         for (GroupData group : groups){
@@ -53,7 +65,7 @@ public class GroupDataGenerator {
         List<GroupData> groups = new ArrayList<GroupData>();
         for (int i = 0; i < count; i++){
             groups.add(new GroupData().withName(String.format("test %s", i))
-                    .withHeader(String.format("header %s", i)). withFooter(String.format("footer %s", i)));
+                    .withHeader(String.format("header\n%s", i)). withFooter(String.format("footer\n%s", i)));
         }
         return groups;
     }
