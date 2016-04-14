@@ -60,12 +60,13 @@ public class ContactCreationTests extends TestBase {
         app.goTo().homePage();
         Contacts before = app.contact().all();
         app.goTo().contactPage();
- //       File photo = new File("src/test/resources/stru.jpg");
+        File photo = new File("src/test/resources/stru.jpg");
 //        ContactData contact = new ContactData()
 //                .withFirstName("Name1").withLastName("LastName1")
 //                .withHomePhone("111").withEmail("olga.leonteva@test.ru")
 //                .withPhoto(photo);
-        app.contact().create(contact);
+
+        app.contact().create(contact.withPhoto(photo));
 
         Contacts after = app.contact().all();
         assertThat(after.size(), equalTo(before.size() + 1));

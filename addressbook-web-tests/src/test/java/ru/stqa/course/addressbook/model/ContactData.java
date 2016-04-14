@@ -34,6 +34,7 @@ public class ContactData {
   private String home;
   private String notes;
   private String group;
+  @Expose
   private File photo;
 
   public File getPhoto() {

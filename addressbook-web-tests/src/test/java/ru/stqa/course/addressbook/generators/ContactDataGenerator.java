@@ -90,8 +90,8 @@ public class ContactDataGenerator {
                     .withMobilePhone(String.format("222 %s", i))
                     .withWorkPhone(String.format("333 %s", i))
                     .withEmail(String.format("email %s", i))
-                    .withEmail2(String.format("email2 %s", i))
-                    .withEmail3(String.format("email3 %s", i)));
+                    .withEmail2(String.format("email2%s", i))
+                    .withEmail3(String.format("email3%s", i)));
                     }
         return contacts;
     }
