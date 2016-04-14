@@ -1,18 +1,33 @@
 package ru.stqa.course.addressbook.model;
 
+import com.google.gson.annotations.Expose;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
+
 import java.io.File;
 
+@XStreamAlias("contacts")
+
 public class ContactData {
+  @XStreamOmitField   // пропустить поле ниже(не включать его в xml файл)
   private int id = Integer.MAX_VALUE;
+  @Expose // помечаем поля, которые должны быть добавлены в json
   private String firstName;
+  @Expose // помечаем поля, которые должны быть добавлены в json
   private String lastName;
   private String address;
+  @Expose // помечаем поля, которые должны быть добавлены в json
   private String homePhone;
+  @Expose // помечаем поля, которые должны быть добавлены в json
   private String mobilePhone;
+  @Expose // помечаем поля, которые должны быть добавлены в json
   private String workPhone;
   private String allPhones;
+  @Expose // помечаем поля, которые должны быть добавлены в json
   private String email;
+  @Expose // помечаем поля, которые должны быть добавлены в json
   private String email2;
+  @Expose // помечаем поля, которые должны быть добавлены в json
   private String email3;
   private String allEmails;
   private String secondaryAddress;
