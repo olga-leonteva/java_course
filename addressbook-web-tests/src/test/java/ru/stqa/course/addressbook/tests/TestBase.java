@@ -10,7 +10,8 @@ import ru.stqa.course.addressbook.appmanager.ApplicationManager;
  */
 public class TestBase {
 
-  protected static final ApplicationManager app = new ApplicationManager(BrowserType.CHROME);
+  protected static final ApplicationManager app
+          = new ApplicationManager(System.getProperty("browser", BrowserType.CHROME));  // устанавливаем дефолтное значение на случай, если браузер не задан
 
   @BeforeSuite
   public void setUp() throws Exception {
