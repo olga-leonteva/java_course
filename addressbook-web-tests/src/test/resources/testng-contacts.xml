@@ -4,6 +4,10 @@
         <test name="Contacts">
         <classes>
             <class name="ru.stqa.course.addressbook.tests.ContactCreationTests"/>
+            <class name="ru.stqa.course.addressbook.tests.ContactModificationTests"/>
+            <class name="ru.stqa.course.addressbook.tests.ContactDeletionTests"/>
+            <class name="ru.stqa.course.addressbook.tests.ContactEmailTests"/>
+            <class name="ru.stqa.course.addressbook.tests.ContactPhoneTests"/>
         </classes>
     </test>
 </suite>
