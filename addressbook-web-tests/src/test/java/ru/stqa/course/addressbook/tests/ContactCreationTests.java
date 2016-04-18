@@ -10,7 +10,6 @@ import ru.stqa.course.addressbook.model.Contacts;
 import ru.stqa.course.addressbook.model.GroupData;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -54,7 +53,6 @@ public class ContactCreationTests extends TestBase {
 
     @Test(dataProvider = "validContactsFromJson")
     public void testContactCreation(ContactData contact) {
-
         app.goTo().groupPage();
         if (app.group().all().size() == 0) {
             app.group().create(new GroupData().withName("test2"));
