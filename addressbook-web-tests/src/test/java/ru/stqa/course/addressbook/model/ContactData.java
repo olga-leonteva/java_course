@@ -3,42 +3,91 @@ package ru.stqa.course.addressbook.model;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
 
+
+import javax.persistence.*;
 import java.io.File;
 
 @XStreamAlias("contacts")
+@Entity
+@Table(name = "addressbook")
 
 public class ContactData {
   @XStreamOmitField   // пропустить поле ниже(не включать его в xml файл)
+  @Id
+  @Column(name = "id")
   private int id = Integer.MAX_VALUE;
+
   @Expose // помечаем поля, которые должны быть добавлены в json
+  @Column(name = "firstname")
   private String firstName;
-  @Expose // помечаем поля, которые должны быть добавлены в json
-  private String lastName;
-  private String address;
-  @Expose // помечаем поля, которые должны быть добавлены в json
-  private String homePhone;
-  @Expose // помечаем поля, которые должны быть добавлены в json
-  private String mobilePhone;
-  @Expose // помечаем поля, которые должны быть добавлены в json
-  private String workPhone;
-  private String allPhones;
-  @Expose // помечаем поля, которые должны быть добавлены в json
-  private String email;
-  @Expose // помечаем поля, которые должны быть добавлены в json
-  private String email2;
-  @Expose // помечаем поля, которые должны быть добавлены в json
-  private String email3;
-  private String allEmails;
-  private String secondaryAddress;
-  private String home;
-  private String notes;
-  private String group;
+
   @Expose
-  private File photo;
+  @Column(name = "lastname")
+  private String lastName;
+
+  @Column(name = "address")
+  @Type(type = "text")
+  private String address;
+
+  @Expose
+  @Column(name = "home")
+  @Type(type = "text")
+  private String homePhone;
+
+  @Expose
+  @Column(name = "mobile")
+  @Type(type = "text")
+  private String mobilePhone;
+
+  @Expose
+  @Column(name = "work")
+  @Type(type = "text")
+  private String workPhone;
+
+  @Transient
+  private String allPhones;
+
+  @Expose
+  @Column(name = "email")
+  @Type(type = "text")
+  private String email;
+
+  @Expose
+  @Column(name = "email2")
+  @Type(type = "text")
+  private String email2;
+
+  @Expose
+  @Column(name = "email3")
+  @Type(type = "text")
+  private String email3;
+
+  @Transient
+  private String allEmails;
+
+  @Column(name = "address2")
+  @Type(type = "text")
+  private String secondaryAddress;
+
+  @Transient
+  private String home;
+
+  @Column(name = "notes")
+  @Type(type = "text")
+  private String notes;
+
+  @Transient
+  private String group;
+
+  @Expose
+  @Column(name = "photo")
+  @Type(type = "text")
+  private String photo;
 
   public File getPhoto() {
-    return photo;
+    return new File(photo);
   }
 
   public String getAllEmails() {
@@ -184,7 +233,7 @@ public class ContactData {
     return this;
   }
   public ContactData withPhoto(File photo) {
-    this.photo = photo;
+    this.photo = photo.getPath();
     return this;
   }
 
