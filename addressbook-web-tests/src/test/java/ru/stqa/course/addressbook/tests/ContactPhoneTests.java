@@ -3,7 +3,6 @@ package ru.stqa.course.addressbook.tests;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.course.addressbook.model.ContactData;
-import ru.stqa.course.addressbook.model.GroupData;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
