@@ -6,7 +6,7 @@
     "homePhone": "111 0",
     "mobilePhone": "222 0",
     "workPhone": "333 0",
-    "email": "email 0",
+    "email": "email0",
     "email2": "email20",
     "email3": "email30"
   },
@@ -17,7 +17,7 @@
     "homePhone": "111 1",
     "mobilePhone": "222 1",
     "workPhone": "333 1",
-    "email": "email 1",
+    "email": "email1",
     "email2": "email21",
     "email3": "email31"
   },
@@ -28,7 +28,7 @@
     "homePhone": "111 2",
     "mobilePhone": "222 2",
     "workPhone": "333 2",
-    "email": "email 2",
+    "email": "email2",
     "email2": "email22",
     "email3": "email32"
   }
