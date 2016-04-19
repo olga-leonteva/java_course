@@ -6,6 +6,8 @@ import ru.stqa.course.addressbook.model.ContactData;
 import ru.stqa.course.addressbook.model.Contacts;
 import ru.stqa.course.addressbook.model.GroupData;
 
+import java.io.File;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -16,26 +18,27 @@ public class ContactDeletionTests extends TestBase{
 
   @BeforeMethod
   public void ensurePreconditions() {
-    app.goTo().groupPage();
-    if (app.group().all().size() == 0) {
-      app.group().create(new GroupData().withName("test1"));
+    if (app.db().groups().size() == 0){
+      app.goTo().groupPage();
+      app.group().create(new GroupData().withName("test 1"));
     }
-    app.goTo().homePage();
-    if (app.contact().all().size() == 0) {
+    if (app.db().contacts().size() == 0) {
+      app.goTo().contactPage();
+      File photo = new File("src/test/resources/stru.jpg");
       app.contact().create(new ContactData()
               .withFirstName("Name1").withFirstName("LastName1").withAddress("testAddress")
               .withMobilePhone("123456").withEmail("olga.leonteva@test.ru").withSecondaryAddress("test1")
-              .withNotes("test3").withGroup("test1"));
+              .withNotes("test3").withGroup("test 1").withPhoto(photo));
     }
   }
 
   @Test
   public void testContactDeletion() {
-    Contacts before = app.contact().all();
+    Contacts before = app.db().contacts();
     ContactData deletedContact = before.iterator().next();
     app.contact().delete(deletedContact);
     app.goTo().homePage();
-    Contacts after = app.contact().all();
+    Contacts after = app.db().contacts();
     assertThat(after.size(),equalTo(before.size() - 1));
     assertThat(after, equalTo(before.without(deletedContact)));
   }

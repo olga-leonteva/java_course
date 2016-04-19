@@ -2,6 +2,7 @@
   {
     "firstName": "Firstname 0",
     "lastName": "Lastname 0",
+    "address": "Address 0",
     "homePhone": "111 0",
     "mobilePhone": "222 0",
     "workPhone": "333 0",
@@ -12,6 +13,7 @@
   {
     "firstName": "Firstname 1",
     "lastName": "Lastname 1",
+    "address": "Address 1",
     "homePhone": "111 1",
     "mobilePhone": "222 1",
     "workPhone": "333 1",
@@ -22,6 +24,7 @@
   {
     "firstName": "Firstname 2",
     "lastName": "Lastname 2",
+    "address": "Address 2",
     "homePhone": "111 2",
     "mobilePhone": "222 2",
     "workPhone": "333 2",
