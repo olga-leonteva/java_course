@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import ru.stqa.course.addressbook.model.ContactData;
 import ru.stqa.course.addressbook.model.Contacts;
 import ru.stqa.course.addressbook.model.GroupData;
+import ru.stqa.course.addressbook.model.Groups;
 
 import java.io.*;
 import java.util.Iterator;
@@ -53,20 +54,23 @@ public class ContactCreationTests extends TestBase {
 
     @Test(dataProvider = "validContactsFromJson")
     public void testContactCreation(ContactData contact) {
-        if (app.db().groups().size() == 0){
-            app.goTo().groupPage();
-            app.group().create(new GroupData().withName("test 1"));
-        }
+//        if (app.db().groups().size() == 0){
+//            app.goTo().groupPage();
+//            app.group().create(new GroupData().withName("test 1"));
+//        }
+        Groups groups = app.db().groups();
+        File photo = new File("src/test/resources/stru.jpg");
+
         app.goTo().homePage();
         Contacts before = app.db().contacts();
         app.goTo().contactPage();
-        File photo = new File("src/test/resources/stru.jpg");
+
 //        ContactData contact = new ContactData()
 //                .withFirstName("Name1").withLastName("LastName1")
 //                .withHomePhone("111").withEmail("olga.leonteva@test.ru")
 //                .withPhoto(photo);
 
-        app.contact().create(contact.withPhoto(photo));
+        app.contact().create(contact.withPhoto(photo).inGroup(groups.iterator().next()));
 
         Contacts after = app.db().contacts();
         assertThat(after.size(), equalTo(before.size() + 1));
