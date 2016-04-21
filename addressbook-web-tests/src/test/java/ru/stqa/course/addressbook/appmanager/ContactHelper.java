@@ -101,7 +101,18 @@ public class ContactHelper extends HelperBase {
     submitContactDeletion();
     contactCache = null;
     closePopupDeletion();
+  }
 
+  public void addContactToGroup(ContactData contact) {
+    selectContactById(contact.getId());
+    String[] groupName = wd.findElement(By.name("to_group")).getText().split("\n");
+    wd.findElement(By.cssSelector("input[name='add']")).click();
+
+//    List<WebElement> elements = wd.findElements(By.name("to_group"));
+//    for (WebElement element : elements){
+//      String groupName = element.getText();
+//    }
+    wd.findElement(By.cssSelector("a[href='./?group=" + groupName[0] + "']")).click();
   }
 
   public boolean isThereAContact() {
@@ -171,6 +182,8 @@ public class ContactHelper extends HelperBase {
             .withAddress(address).withHomePhone(homePhone).withMobilePhone(mobilePhone).withWorkPhone(workPhone)
             .withEmail(email).withEmail2(email2).withEmail3(email3);
   }
+
+
 // .withHomePhone(homePhone).withWorkPhone(workPhone)
 
 }
