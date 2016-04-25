@@ -1,5 +1,6 @@
 package ru.stqa.course.addressbook.appmanager;
 
+import com.sun.xml.internal.bind.v2.TODO;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,6 +8,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.course.addressbook.model.ContactData;
 import ru.stqa.course.addressbook.model.Contacts;
+import ru.stqa.course.addressbook.model.GroupData;
 
 import java.util.List;
 
@@ -115,6 +117,11 @@ public class ContactHelper extends HelperBase {
     wd.findElement(By.cssSelector("a[href='./?group=" + groupName[0] + "']")).click();
   }
 
+ // TODO
+  public void filterByGroup() {
+    wd.findElement(By.name("group")).click();
+  }
+
   public boolean isThereAContact() {
     return isElementPresent(By.name("selected[]"));
   }
@@ -182,6 +189,7 @@ public class ContactHelper extends HelperBase {
             .withAddress(address).withHomePhone(homePhone).withMobilePhone(mobilePhone).withWorkPhone(workPhone)
             .withEmail(email).withEmail2(email2).withEmail3(email3);
   }
+
 
 
 // .withHomePhone(homePhone).withWorkPhone(workPhone)

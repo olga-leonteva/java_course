@@ -16,5 +16,7 @@ public class AddContactToGroupTests extends TestBase{
         app.goTo().homePage();
         app.contact().addContactToGroup(contact);
 
+        app.contact().filterByGroup();
+
     }
 }
