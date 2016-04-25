@@ -19,17 +19,23 @@ public class FtpHelper {
     }
 
     // заменяем файл
-    public void upload(File file, String target, String backup) throws IOException {
+    public void upload(File file, String target, String backup) throws IOException { // загружает новый файл и временно переименовывает старый
+        // устанавливаем соединение с сервером
         ftp.connect(app.getProperty("ftp.host"));
         ftp.login(app.getProperty("ftp.login"), app.getProperty("ftp.password"));
+        // удаляем предыдущую резервную копию
         ftp.deleteFile(backup);
+        // переименовываем удаленный файл, делаем резервную копию
         ftp.rename(target, backup);
+        // включается пассывный режим передачи данных
         ftp.enterLocalPassiveMode();
-        ftp.storeFile(target, new FileInputStream(file)); // файл для чтения бинарных данных
+        // передается локальный файл
+        ftp.storeFile(target, new FileInputStream(file)); // файл для чтения бинарных данных. Читаются из лок файла, передаются на удаленную машину и там сохраняются
+        // соединение разрывается
         ftp.disconnect();
     }
     // востанавлимаем конфигурацию
-    public void restore(String backup, String target) throws IOException {
+    public void restore(String backup, String target) throws IOException { //метод восстанавливает старый файл
         ftp.connect(app.getProperty("ftp.host"));
         ftp.login(app.getProperty("ftp.login"), app.getProperty("ftp.password"));
         ftp.deleteFile(target);
