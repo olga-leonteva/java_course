@@ -87,4 +87,8 @@ public class ApplicationManager {
     }
     return mailHelper;
   }
+
+  public ChangePasswordHelper changePassword(){
+    return new ChangePasswordHelper(this);
+  }
 }
