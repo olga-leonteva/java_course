@@ -6,6 +6,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.lanwen.verbalregex.VerbalExpression;
 import ru.stqa.cources.mantis.model.MailMessage;
+import ru.stqa.cources.mantis.model.UserData;
+import ru.stqa.cources.mantis.model.Users;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
@@ -23,19 +25,24 @@ public class ChangePasswordTests extends TestBase {
     @Test
     public void testChangePassword() throws IOException, MessagingException {
         long now = System.currentTimeMillis();
-
         String password = String.format("password%s", now);
-        app.changePassword().loginAsAdmin("administrator", "root");
-        app.changePassword().goToManageUsers();
-        app.changePassword().getUserInTable();
-        String email = app.changePassword().getUserEmail();
-        app.changePassword().pressResetPasswordBottom();
+        Users users = app.db().users();
+        for (UserData user : users)
+            if (user.getId() > 1) {
 
-        List<MailMessage> mailMessages = app.mail().waitForMail(1, 20000);
-        String resetPasswordLink = findResetPasswordLink(mailMessages, email);
+                app.changePassword().loginAsAdmin("administrator", "root");
+                app.changePassword().goToManageUsers();
+                app.changePassword().getUserInTable(user.getUsername());
+                String email = app.changePassword().getUserEmail();
+                app.changePassword().pressResetPasswordBottom();
 
-        app.registration().finish(resetPasswordLink, password);
-        Assert.assertTrue(app.newSession().login("user1", password));
+                List<MailMessage> mailMessages = app.mail().waitForMail(1, 20000);
+                String resetPasswordLink = findResetPasswordLink(mailMessages, email);
+
+                app.registration().finish(resetPasswordLink, password);
+                Assert.assertTrue(app.newSession().login(user.getUsername(), password));
+                break;
+            }
     }
 
     private String findResetPasswordLink(List<MailMessage> mailMessages, String email) {

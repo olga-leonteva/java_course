@@ -1,6 +1,7 @@
 package ru.stqa.cources.mantis.appmanager;
 
 import org.openqa.selenium.By;
+import ru.stqa.cources.mantis.model.UserData;
 
 /**
  * Created by leonto on 4/26/2016.
@@ -15,8 +16,8 @@ public class ChangePasswordHelper extends HelperBase{
         wd.findElement(By.xpath(".//a[text()='Manage Users']")).click();
     }
 
-    public void getUserInTable(){
-        wd.findElement(By.xpath(".//a[text()='user1']")).click();
+    public void getUserInTable(String user){
+        wd.findElement(By.xpath(".//a[text()='" + user + "']")).click();
     }
 
     public String getUserEmail(){
