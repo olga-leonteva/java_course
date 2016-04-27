@@ -1,6 +1,7 @@
 package ru.stqa.cources.mantis.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.cources.mantis.model.Issue;
 import ru.stqa.cources.mantis.model.Project;
@@ -14,6 +15,13 @@ import java.util.Set;
  * Created by leonto on 4/27/2016.
  */
 public class SoapTests extends TestBase{
+
+    @BeforeMethod
+    public void checkIssueStatus() throws RemoteException, ServiceException, MalformedURLException {
+        int issueId = 1;
+        skipIfNotFixed(issueId);
+    }
+
 
     @Test
     public void testGetProjects() throws MalformedURLException, ServiceException, RemoteException {
