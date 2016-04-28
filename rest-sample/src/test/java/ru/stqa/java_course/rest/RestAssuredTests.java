@@ -44,7 +44,7 @@ public class RestAssuredTests {
         return new Gson().fromJson(issues,  new TypeToken<Set<Issue>>(){}.getType());
 
     }
-    
+
     private int createIssue(Issue newIssue) throws IOException {
         String json = RestAssured.given()
                 .parameter("subject", newIssue.getSubject())
